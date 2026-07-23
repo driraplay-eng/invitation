@@ -237,20 +237,20 @@
   <!-- SCREEN 1 -->
   <div class="screen active" id="screen1">
     <div class="kicker">une petite question</div>
-    <h1>will you go on a<br><em>date</em> with me?</h1>
-    <p class="sub">(ça m'a demandé beaucoup de courage pour faire ça)</p>
+    <h1>will you go on a<br><em>date</em> with me? ❤️​</h1>
+    <p class="sub">(ça m'a demandé des nuits blanche pour faire ça 🫩🫩​)</p>
     <div class="choice-zone" id="zone">
-      <button class="btn btn-no" id="noBtn">lol noooo</button>
-      <button class="btn btn-yes" id="yesBtn">yes!! 🥹</button>
+      <button class="btn btn-no" id="noBtn">🙅‍♀️​ lol nooo nooo 🙅‍♀️​</button>
+      <button class="btn btn-yes" id="yesBtn">😍 yesss! 😍</button>
     </div>
-    <p class="hint" id="hintText">go on, click yes</p>
+    <p class="hint" id="hintText">Click yesssss</p>
   </div>
 
   <!-- SCREEN 2: date + time only -->
   <div class="screen" id="screen2">
     <div class="kicker">réponse reçue ♡</div>
-    <h1>Impossible mansada9ch<br>nzelt sur <em>Yess</em> &lt;3</h1>
-    <p class="sub">behi haya taw nhadhrou el date mte3na (zero pression)</p>
+    <h1>Finallyyy <br>nzelt ala <em>Yess🥳🥳</em> &lt;3</h1>
+    <p class="sub">behi haya taw nhadhrou el date (zero pression)😎​</p>
 
     <div class="field">
       <label>📅 Quel Jour</label>
@@ -268,7 +268,7 @@
   <div class="screen" id="screen3">
     <div class="kicker">dernière étape ♡</div>
     <h1>et on fait quoi<br>comme <em>date</em>?</h1>
-    <p class="sub">choisis l'ambiance, je m'occupe du reste</p>
+    <p class="sub">Entii choisie w ena je m'occupe du reste 😎​</p>
 
     <div class="options" id="options">
       <div class="opt" data-v="Sushi 🍣"><span class="emoji">🍣</span>sushi</div>
@@ -279,20 +279,20 @@
       <div class="opt" data-v="Concert 🎵"><span class="emoji">🎵</span>concert</div>
     </div>
 
-    <button class="btn cta" id="lockBtn" disabled>C'est notéééééé &lt;3</button>
+    <button class="btn cta" id="lockBtn" disabled>🧡 C'est notéééééé 🧡</button>
   </div>
 
   <!-- SCREEN 4: summary -->
   <div class="screen" id="screen4">
     <div class="kicker">c'est officiel ♡</div>
     <h1>it's a <em>date</em> 🎉</h1>
-    <p class="sub">here's our little recap, don't be late.</p>
+    <p class="sub"> Voici le récap de notre datee </p>
     <div class="summary">
       <div class="summary-row"><span class="k">Day</span><span class="v" id="sumDate">-</span></div>
       <div class="summary-row"><span class="k">Time</span><span class="v" id="sumTime">-</span></div>
       <div class="summary-row"><span class="k">Vibe</span><span class="v" id="sumType">-</span></div>
     </div>
-    <p class="sub" style="margin-bottom:2px;">can't wait 🧡</p>
+    <p class="sub" style="margin-bottom:2px;">Can't wait 🧡</p>
     <p class="status" id="statusText"></p>
   </div>
 
@@ -314,14 +314,13 @@
   const hintText = document.getElementById('hintText');
 
   const sassLines = [
-    "Non / Nyet / Manhebech",
-    "zid khamem choya 🫠",
-    "miséléch khoudh bkhatri",
-    "zid a9ra la question bel béhi 😏",
-    "Chouf ahyka YESSSSS bel KBIR",
-    "Rassek shih mais ena rassi asa7",
-    "Clic ala Yes c'est plus simple walh",
-    "🫠"
+    "💁‍♀️ Non / Nyet / Manhebech 💁‍♀️​",
+    "🫠 Zid Khamem Choya 🫠",
+    "😁 Miséléch khoudh bkhatri 😁​",
+    "😏 Zid a9ra la question bel béhi 😏",
+    "😭 Chouf ahyka YESSSSS bel KBIR 😭",
+    "😤 Rassek shih, mais ena rassi asa7 😈​​",
+    "😏 Clic ala Yes c'est plus simple walh 😏"
   ];
   let dodgeCount = 0;
 
@@ -392,7 +391,7 @@
     const scale = Math.min(1.6, 1 + dodgeCount * 0.06);
     yesBtn.style.transform = `translateX(-50%) scale(${scale})`;
     noBtn.textContent = sassLines[Math.min(dodgeCount - 1, sassLines.length - 1)];
-    hintText.textContent = dodgeCount > 4 ? "Clic ala Bouton Yes chouf mahleh en Rose" : "go on, click yes";
+    hintText.textContent = dodgeCount > 4 ? "Chouff Bouton Yes mahleh en Rose 😏" : "go on, click yes";
 
     if (dodgeCount >= sassLines.length) {
       noBtn.style.pointerEvents = 'none';
