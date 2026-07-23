@@ -391,7 +391,7 @@
     const scale = Math.min(1.6, 1 + dodgeCount * 0.06);
     yesBtn.style.transform = `translateX(-50%) scale(${scale})`;
     noBtn.textContent = sassLines[Math.min(dodgeCount - 1, sassLines.length - 1)];
-    hintText.textContent = dodgeCount > 4 ? "Chouff Bouton Yes mahleh en Rose 😏";
+    hintText.textContent = dodgeCount > 4 ? "Clic ala Bouton Yes chouf mahleh en Rose" : "go on, click yes";
 
     if (dodgeCount >= sassLines.length) {
       noBtn.style.pointerEvents = 'none';
