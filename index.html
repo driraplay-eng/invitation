@@ -284,15 +284,15 @@
 
   <!-- SCREEN 4: summary -->
   <div class="screen" id="screen4">
-    <div class="kicker">c'est officiel ♡</div>
+    <div class="kicker">♡ C'est Officiel ♡</div>
     <h1>it's a <em>date</em> 🎉</h1>
-    <p class="sub"> Voici le récap de notre datee </p>
+    <p class="sub"> Voici un petit récap de notre datee 🤗​</p>
     <div class="summary">
-      <div class="summary-row"><span class="k">Day</span><span class="v" id="sumDate">-</span></div>
-      <div class="summary-row"><span class="k">Time</span><span class="v" id="sumTime">-</span></div>
+      <div class="summary-row"><span class="k">Jour</span><span class="v" id="sumDate">-</span></div>
+      <div class="summary-row"><span class="k">Heur</span><span class="v" id="sumTime">-</span></div>
       <div class="summary-row"><span class="k">Vibe</span><span class="v" id="sumType">-</span></div>
     </div>
-    <p class="sub" style="margin-bottom:2px;">Can't wait 🧡</p>
+    <p class="sub" style="margin-bottom:2px;">Can't waitt for our first datee 🫠🧡</p>
     <p class="status" id="statusText"></p>
   </div>
 
@@ -321,7 +321,6 @@
     "😭 Chouf ahyka YESSSSS bel KBIR 😭",
     "😤 Rassek shih, mais ena rassi asa7 😈​​",
     "😏 Clic ala Yes c'est plus simple walh 😏",
-    "🫠"
   ];
   let dodgeCount = 0;
 
@@ -478,7 +477,7 @@
         body: JSON.stringify({ day: dateStr, time: timeStr, type: type })
       });
       const data = await res.json();
-      statusText.textContent = data.success ? "recap sent 💌" : "couldn't send automatically, but the date's still on!";
+      statusText.textContent = data.success ? "💌 Recap sent via email 💌" : "couldn't send automatically, but the date's still on!";
     } catch (err) {
       statusText.textContent = "couldn't send automatically, but the date's still on!";
     }
