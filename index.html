@@ -5,27 +5,26 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>une petite question...</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,600;1,700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --blush: #fff1f3;
-    --blush2: #ffe0e6;
-    --rose: #e6396b;
-    --rose-deep: #a80f3e;
-    --peach: #ff8a80;
-    --cream: #fffaf9;
-    --ink: #3a1220;
-    --ink-soft: #93636c;
-    --line: #f6ccd6;
+    --cream: #faf5ee;
+    --cream2: #f3e8d9;
+    --ink: #241f1c;
+    --ink-soft: #948a7d;
+    --gold: #b8924f;
+    --gold-light: #d9bd85;
+    --gold-dark: #8a6a34;
+    --black: #1c1815;
   }
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;}
   body{
     min-height:100vh;
     background:
-      radial-gradient(circle at 12% 8%, var(--blush2), transparent 50%),
-      radial-gradient(circle at 90% 92%, var(--blush2), transparent 50%),
-      var(--blush);
+      radial-gradient(ellipse at 15% 0%, #f6ddca, transparent 55%),
+      radial-gradient(ellipse at 90% 100%, #eccab3, transparent 55%),
+      linear-gradient(135deg, #e9c9b6 0%, #f3d9c6 40%, #ecd0bb 70%, #e3bfa6 100%);
     font-family:'Quicksand', sans-serif;
     color:var(--ink);
     display:flex;
@@ -35,51 +34,49 @@
     overflow:hidden;
     position:relative;
   }
-
-  /* faint scattered heart wallpaper, instead of the diagonal ruled lines look */
-  .bg-heart{
-    position:fixed;
-    color:var(--rose);
-    opacity:0.10;
+  body::before{
+    content:'';
+    position:fixed; inset:0;
+    background-image:repeating-linear-gradient(120deg, rgba(255,255,255,0.07) 0px, rgba(255,255,255,0.07) 2px, transparent 2px, transparent 14px);
     pointer-events:none;
     z-index:0;
   }
+
+  .sprig{ position:fixed; opacity:0.85; pointer-events:none; z-index:0; }
+  .sprig.top-right{ top:18px; right:14px; width:120px; height:130px; }
+  .sprig.bottom-left{ bottom:18px; left:14px; width:120px; height:130px; transform:rotate(180deg); }
 
   .floaty{
     position:fixed;
     pointer-events:none;
-    font-size:16px;
-    opacity:0.6;
+    font-size:15px;
+    opacity:0.55;
     animation: floatUp linear forwards;
     z-index:0;
   }
   @keyframes floatUp{
-    from{ transform:translateY(0) rotate(0deg); opacity:0.6; }
-    to{ transform:translateY(-100vh) rotate(25deg); opacity:0; }
+    from{ transform:translateY(0) rotate(0deg); opacity:0.55; }
+    to{ transform:translateY(-100vh) rotate(20deg); opacity:0; }
   }
 
   .card{
     position:relative;
     z-index:1;
     width:100%;
-    max-width:480px;
+    max-width:460px;
     background:var(--cream);
-    border-radius:34px 34px 12px 34px;
-    padding:46px 34px 38px;
-    box-shadow: 0 30px 60px -20px rgba(168,15,62,0.28), 0 2px 0 rgba(255,255,255,0.7) inset;
+    border:1px solid var(--gold);
+    border-radius:22px;
+    padding:40px 32px 34px;
+    box-shadow: 0 40px 80px -24px rgba(30,20,10,0.4);
     text-align:center;
   }
-
-  /* signature badge — a little heart tab clipped onto the card edge */
-  .badge{
-    position:absolute;
-    top:-22px; left:50%;
-    transform:translateX(-50%) rotate(-4deg);
-    width:46px; height:46px;
-    background:linear-gradient(135deg, var(--peach), var(--rose));
-    clip-path: path('M23 44 C 6 32, 0 20, 0 12 C 0 4, 8 0, 14 3 C 18 5, 21 9, 23 12 C 25 9, 28 5, 32 3 C 38 0, 46 4, 46 12 C 46 20, 40 32, 23 44 Z');
-    box-shadow:0 8px 16px -6px rgba(168,15,62,0.4);
-    z-index:2;
+  .card::before{
+    content:'';
+    position:absolute; inset:7px;
+    border:1px solid var(--gold-light);
+    border-radius:15px;
+    pointer-events:none;
   }
 
   .screen{ display:none; animation: fadeUp .5s ease; position:relative; z-index:1; }
@@ -89,41 +86,75 @@
     to{ opacity:1; transform:translateY(0); }
   }
 
+  /* top divider: line — heart — line */
+  .top-divider{
+    display:flex; align-items:center; justify-content:center; gap:12px;
+    margin:2px 0 18px;
+  }
+  .top-divider .tline{
+    flex:1; max-width:60px; height:1px;
+    background:linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+  .top-divider svg{ width:24px; height:22px; color:var(--gold); flex-shrink:0; }
+
+  /* mini divider: line — diamond — line */
+  .mini-divider{
+    display:flex; align-items:center; justify-content:center; gap:8px;
+    margin:8px 0 20px;
+  }
+  .mini-divider .mline{ width:44px; height:1px; background:var(--gold-light); }
+  .mini-divider .diamond{ width:5px; height:5px; background:var(--gold); transform:rotate(45deg); }
+
   .kicker{
-    font-size:12px;
+    font-size:11.5px;
     font-weight:700;
-    letter-spacing:0.14em;
+    letter-spacing:0.28em;
     text-transform:uppercase;
-    color:var(--rose);
-    margin:8px 0 6px;
+    color:var(--gold-dark);
+    margin:0 0 6px;
   }
 
   h1{
     font-family:'Playfair Display', serif;
-    font-style:italic;
+    font-style:normal;
     font-weight:700;
-    font-size:clamp(28px, 6.5vw, 40px);
-    line-height:1.15;
+    font-size:clamp(24px, 5.8vw, 34px);
+    line-height:1.22;
     margin:0 0 8px;
-    color:var(--rose-deep);
+    color:var(--ink);
   }
-  h1 em{ font-style:italic; color:var(--peach); }
-  .sub{
-    font-size:14px;
-    color:var(--ink-soft);
-    margin:0 0 28px;
-    min-height:18px;
-    line-height:1.5;
+  h1 em{ font-style:italic; color:var(--gold-dark); font-weight:600; }
+  .flank-heart{
+    width:15px; height:14px;
+    color:var(--gold);
+    display:inline-block;
+    vertical-align:middle;
+    margin:0 3px 3px;
   }
+  .heart-inline{ width:0.68em; height:0.6em; vertical-align:-0.03em; margin-left:2px; color:var(--gold-dark); }
+  .qmark{ font-style:normal; font-weight:700; color:var(--ink); }
 
-  /* Screen 1 */
-  .choice-zone{ position:relative; height:190px; margin-top:10px; }
+  .sub{
+    font-size:13.5px;
+    color:var(--ink-soft);
+    margin:0 0 26px;
+    min-height:18px;
+    line-height:1.55;
+  }
+  #screen1 .sub{ margin-top:6px; }
+
+  /* Screen 1 buttons */
+  .choice-zone{ position:relative; height:190px; margin-top:6px; }
   .btn{
     border:none;
     border-radius:999px;
     font-family:'Quicksand', sans-serif;
     font-weight:700;
     cursor:pointer;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:7px;
     transition: left .28s cubic-bezier(.34,1.56,.64,1), top .28s cubic-bezier(.34,1.56,.64,1),
                 transform .18s ease, box-shadow .18s ease, background .3s ease, opacity .2s ease;
   }
@@ -132,26 +163,30 @@
     left:50%;
     top:0;
     transform:translateX(-50%) scale(1);
-    background:linear-gradient(135deg, var(--peach), var(--rose));
-    color:#fff;
-    font-size:17px;
-    padding:16px 34px;
-    box-shadow:0 14px 26px -10px rgba(168,15,62,0.55);
+    background:var(--black);
+    border:1.5px solid var(--gold);
+    color:#fdf8f0;
+    font-size:15px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    padding:16px 32px;
+    box-shadow:0 14px 26px -10px rgba(0,0,0,0.5);
     z-index:2;
     animation: heartbeat 1.8s ease-in-out infinite;
   }
+  .btn-yes svg{ width:15px; height:14px; color:#fdf8f0; }
   @keyframes heartbeat{
     0%,100%{ filter:brightness(1); }
-    50%{ filter:brightness(1.1); }
+    50%{ filter:brightness(1.25); }
   }
-  .btn-yes:hover{ box-shadow:0 18px 30px -8px rgba(168,15,62,0.6); }
+  .btn-yes:hover{ box-shadow:0 18px 30px -8px rgba(0,0,0,0.55); }
   .btn-no{
     position:absolute;
     top:6px;
     left:calc(50% + 70px);
-    background:var(--cream);
+    background:var(--cream2);
     color:var(--ink-soft);
-    border:1.5px solid var(--line);
+    border:1.5px solid var(--gold-light);
     font-size:12.5px;
     line-height:1.3;
     padding:10px 14px;
@@ -161,103 +196,151 @@
     word-wrap:break-word;
     text-align:center;
     z-index:3;
-    box-shadow:0 6px 14px -8px rgba(58,18,32,0.18);
+    box-shadow:0 6px 14px -8px rgba(58,18,32,0.15);
   }
-  .hint{ font-size:12px; color:var(--ink-soft); opacity:0.75; margin-top:10px; }
+  .hint{
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--gold-dark);
+    opacity:0.9;
+    margin-top:14px;
+  }
+  .hint::before, .hint::after{ content:'✦'; margin:0 8px; color:var(--gold); font-size:10px; }
 
   /* Screen 2 & 3 shared field/option styles */
-  .field{ text-align:left; margin-bottom:20px; }
+  .field{ text-align:left; margin-bottom:18px; }
   .field label{
     display:flex; align-items:center; gap:6px;
-    font-size:12px; font-weight:700; letter-spacing:0.05em; text-transform:uppercase;
-    color:var(--rose-deep); margin-bottom:8px;
+    font-size:11px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase;
+    color:var(--gold-dark); margin-bottom:8px;
   }
   .field input{
-    width:100%; padding:14px 16px; border-radius:16px;
-    border:1.5px solid var(--line); background:var(--blush);
-    font-family:'Quicksand', sans-serif; font-weight:600; font-size:16px; color:var(--ink);
+    width:100%; padding:13px 15px; border-radius:12px;
+    border:1.5px solid var(--gold-light); background:var(--cream2);
+    font-family:'Quicksand', sans-serif; font-weight:600; font-size:15px; color:var(--ink);
   }
-  .field input:focus{ outline:none; border-color:var(--rose); }
+  .field input:focus{ outline:none; border-color:var(--gold); }
 
-  .options{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; margin-bottom:26px; }
+  .options{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:9px; margin-bottom:24px; }
   .opt{
-    border:1.5px solid var(--line); background:var(--blush); border-radius:18px;
-    padding:16px 8px 12px; cursor:pointer; transition: all .15s ease;
-    font-size:13px; font-weight:600;
+    border:1.5px solid var(--gold-light); background:var(--cream2); border-radius:14px;
+    padding:15px 6px 11px; cursor:pointer; transition: all .15s ease;
+    font-size:12.5px; font-weight:600; color:var(--ink);
   }
-  .opt .emoji{ font-size:24px; display:block; margin-bottom:6px; transition: transform .3s ease; }
-  .opt:hover{ border-color:var(--rose); transform:translateY(-2px); }
-  .opt:hover .emoji{ transform:scale(1.15) rotate(-6deg); }
+  .opt .emoji{ font-size:22px; display:block; margin-bottom:6px; transition: transform .3s ease; }
+  .opt:hover{ border-color:var(--gold); transform:translateY(-2px); }
+  .opt:hover .emoji{ transform:scale(1.12) rotate(-5deg); }
   .opt.selected{
-    background:linear-gradient(135deg, #ffd9e0, #ffe6d9);
-    border-color:var(--rose);
-    box-shadow:0 8px 18px -8px rgba(168,15,62,0.4);
+    background:#efd9ae;
+    border-color:var(--gold);
+    box-shadow:0 8px 16px -8px rgba(138,106,52,0.4);
     animation: pop .3s ease;
   }
   @keyframes pop{
     0%{ transform:scale(1); }
-    40%{ transform:scale(1.08); }
+    40%{ transform:scale(1.07); }
     100%{ transform:scale(1); }
   }
 
   .cta{
-    width:100%; padding:16px; font-size:16px;
-    background:linear-gradient(135deg, var(--peach), var(--rose));
-    color:#fff; box-shadow:0 14px 26px -10px rgba(168,15,62,0.55);
+    width:100%; padding:15px; font-size:14px; letter-spacing:0.1em; text-transform:uppercase;
+    background:var(--black); border:1.5px solid var(--gold); color:#fdf8f0;
+    box-shadow:0 14px 26px -10px rgba(0,0,0,0.45);
   }
   .cta:disabled{ opacity:0.35; cursor:not-allowed; box-shadow:none; }
   .cta:not(:disabled):hover{ transform:translateY(-2px); }
 
   /* Screen 4 summary */
   .summary{
-    text-align:left; background:var(--blush); border:1.5px dashed var(--line);
-    border-radius:18px; padding:20px 22px; margin:20px 0 18px; font-size:14px;
+    text-align:left; background:var(--cream2); border:1.5px dashed var(--gold-light);
+    border-radius:14px; padding:18px 20px; margin:16px 0 18px; font-size:13.5px;
   }
-  .summary-row{ display:flex; justify-content:space-between; padding:9px 0; border-bottom:1px solid var(--line); }
+  .summary-row{ display:flex; justify-content:space-between; padding:9px 0; border-bottom:1px solid var(--gold-light); }
   .summary-row:last-child{ border-bottom:none; }
   .summary-row .k{ color:var(--ink-soft); }
-  .summary-row .v{ font-weight:700; color:var(--rose-deep); }
+  .summary-row .v{ font-weight:700; color:var(--gold-dark); }
 
-  .status{ font-size:12px; color:var(--ink-soft); margin-top:6px; min-height:16px; }
+  .status{ font-size:11.5px; color:var(--ink-soft); margin-top:6px; min-height:16px; }
 
   .confetti-piece{
-    position:fixed; top:-20px; font-size:18px; pointer-events:none; z-index:5;
+    position:fixed; top:-20px; font-size:17px; pointer-events:none; z-index:5;
     animation: confettiFall linear forwards;
   }
   @keyframes confettiFall{
-    to{ transform:translateY(110vh) rotate(360deg); opacity:0.2; }
+    to{ transform:translateY(110vh) rotate(320deg); opacity:0.2; }
   }
 </style>
 </head>
 <body>
 
+<svg class="sprig top-right" viewBox="0 0 120 130" xmlns="http://www.w3.org/2000/svg">
+  <path d="M100 10 C 85 25, 70 40, 55 60" stroke="#b8924f" stroke-width="1" fill="none" opacity="0.6"/>
+  <path d="M95 15 C 82 22, 68 34, 60 48" stroke="#b8924f" stroke-width="0.8" fill="none" opacity="0.5"/>
+  <circle cx="98" cy="12" r="3.5" fill="#fffaf3" stroke="#d9bd85" stroke-width="0.6"/>
+  <circle cx="86" cy="24" r="3" fill="#fffaf3" stroke="#d9bd85" stroke-width="0.6"/>
+  <circle cx="74" cy="34" r="2.6" fill="#fffaf3" stroke="#d9bd85" stroke-width="0.6"/>
+  <circle cx="63" cy="46" r="2.2" fill="#fffaf3" stroke="#d9bd85" stroke-width="0.6"/>
+  <circle cx="90" cy="18" r="1.6" fill="#fffaf3"/>
+  <circle cx="78" cy="29" r="1.4" fill="#fffaf3"/>
+</svg>
+<svg class="sprig bottom-left" viewBox="0 0 120 130" xmlns="http://www.w3.org/2000/svg">
+  <path d="M100 10 C 85 25, 70 40, 55 60" stroke="#b8924f" stroke-width="1" fill="none" opacity="0.6"/>
+  <path d="M95 15 C 82 22, 68 34, 60 48" stroke="#b8924f" stroke-width="0.8" fill="none" opacity="0.5"/>
+  <circle cx="98" cy="12" r="3.5" fill="#fffaf3" stroke="#d9bd85" stroke-width="0.6"/>
+  <circle cx="86" cy="24" r="3" fill="#fffaf3" stroke="#d9bd85" stroke-width="0.6"/>
+  <circle cx="74" cy="34" r="2.6" fill="#fffaf3" stroke="#d9bd85" stroke-width="0.6"/>
+  <circle cx="63" cy="46" r="2.2" fill="#fffaf3" stroke="#d9bd85" stroke-width="0.6"/>
+  <circle cx="90" cy="18" r="1.6" fill="#fffaf3"/>
+  <circle cx="78" cy="29" r="1.4" fill="#fffaf3"/>
+</svg>
+
 <div class="card">
-  <div class="badge"></div>
 
   <!-- SCREEN 1 -->
   <div class="screen active" id="screen1">
+    <div class="top-divider">
+      <span class="tline"></span>
+      <svg viewBox="0 0 24 22" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 20.5 C 6 15 1 10.5 1 6.5 C 1 3 3.5 1 6.5 1 C 9 1 11 2.5 12 5 C 13 2.5 15 1 17.5 1 C 20.5 1 23 3 23 6.5 C 23 10.5 18 15 12 20.5 Z" stroke="currentColor" stroke-width="1.4" fill="none"/>
+      </svg>
+      <span class="tline"></span>
+    </div>
     <div class="kicker">une petite question</div>
-    <h1>❤️ Emna, will you go out on a<br><em>date</em> with me? ❤️​</h1>
-    <p class="sub">(You may click "No".. but I secretly designed this for a "Yes" 💫😏​)</p>
+    <div class="mini-divider"><span class="mline"></span><span class="diamond"></span><span class="mline"></span></div>
+
+    <h1>Emna, will you go out
+      <br>
+      <svg class="flank-heart" viewBox="0 0 24 22" xmlns="http://www.w3.org/2000/svg"><path d="M12 20.5 C 6 15 1 10.5 1 6.5 C 1 3 3.5 1 6.5 1 C 9 1 11 2.5 12 5 C 13 2.5 15 1 17.5 1 C 20.5 1 23 3 23 6.5 C 23 10.5 18 15 12 20.5 Z" stroke="currentColor" stroke-width="1.4" fill="none"/></svg>
+      on a <em>date</em> with me<span class="qmark">?</span>
+      <svg class="flank-heart" viewBox="0 0 24 22" xmlns="http://www.w3.org/2000/svg"><path d="M12 20.5 C 6 15 1 10.5 1 6.5 C 1 3 3.5 1 6.5 1 C 9 1 11 2.5 12 5 C 13 2.5 15 1 17.5 1 C 20.5 1 23 3 23 6.5 C 23 10.5 18 15 12 20.5 Z" stroke="currentColor" stroke-width="1.4" fill="none"/></svg>
+    </h1>
+    <p class="sub">(You may click "No".. but I secretly designed this for a "Yes" 💫😊)</p>
+
     <div class="choice-zone" id="zone">
       <button class="btn btn-no" id="noBtn">🙅‍♀️​ lol nooo nooo 🙅‍♀️​</button>
-      <button class="btn btn-yes" id="yesBtn"> Yess❤️</button>
+      <button class="btn btn-yes" id="yesBtn">
+        Yess
+        <svg viewBox="0 0 24 22" xmlns="http://www.w3.org/2000/svg"><path d="M12 20.5 C 6 15 1 10.5 1 6.5 C 1 3 3.5 1 6.5 1 C 9 1 11 2.5 12 5 C 13 2.5 15 1 17.5 1 C 20.5 1 23 3 23 6.5 C 23 10.5 18 15 12 20.5 Z" fill="currentColor"/></svg>
+      </button>
     </div>
-    <p class="hint" id="hintText">Choose wisely.. (Hint: It's "Yes".)✨</p>
+    <p class="hint" id="hintText">Choose wisely.. (Hint: It's "Yes".)</p>
   </div>
 
   <!-- SCREEN 2: date + time only -->
   <div class="screen" id="screen2">
-    <div class="kicker">réponse reçue ♡</div>
-    <h1>Finallyyy <br>nzelt ala <em>Yess❤️</em></h1>
+    <div class="kicker">réponse reçue</div>
+    <div class="mini-divider"><span class="mline"></span><span class="diamond"></span><span class="mline"></span></div>
+    <h1>Finallyyy <br>nzelt ala <em>Yess</em></h1>
     <p class="sub">Behi taw nhadhrou el date (zéro pression)😎​</p>
 
     <div class="field">
-      <label>📅 Quel Jour 📅</label>
+      <label>📅 Quel Jour</label>
       <input type="date" id="dateInput">
     </div>
     <div class="field">
-      <label>🕒 Quel Heure 🕒</label>
+      <label>🕒 Quel Heure</label>
       <input type="time" id="timeInput">
     </div>
 
@@ -266,44 +349,41 @@
 
   <!-- SCREEN 3: type of date only -->
   <div class="screen" id="screen3">
-    <div class="kicker">😆​ On a presque finii 😆​</div>
-    <h1>Et on fait quoi<br>comme <em>date 🫣​​</em>?</h1>
+    <div class="kicker">on a presque finii</div>
+    <div class="mini-divider"><span class="mline"></span><span class="diamond"></span><span class="mline"></span></div>
+    <h1>Et on fait quoi<br>comme <em>date</em>?</h1>
     <p class="sub">(Entii choisie w ena je m'occupe du reste 😎​)</p>
 
     <div class="options" id="options">
       <div class="opt" data-v="Sushi 🍣"><span class="emoji">🍣</span>sushi</div>
-      <div class="opt" data-v="Dinner date 🍽️"><span class="emoji">🍽️</span>Dinner date</div>
-      <div class="opt" data-v="Movie night 🎬"><span class="emoji">🎬</span>Movie Night</div>
-      <div class="opt" data-v="Picnic 🧺"><span class="emoji">🧺</span>Picnic</div>
-      <div class="opt" data-v="Coffee ☕"><span class="emoji">☕</span>Coffee</div>
-      <div class="opt" data-v="Tennis 🎾​"><span class="emoji">🎾</span>Tennis</div>
+      <div class="opt" data-v="Dinner date 🍽️"><span class="emoji">🍽️</span>dinner date</div>
+      <div class="opt" data-v="Movie night 🎬"><span class="emoji">🎬</span>movie night</div>
+      <div class="opt" data-v="Picnic 🧺"><span class="emoji">🧺</span>picnic</div>
+      <div class="opt" data-v="Coffee ☕"><span class="emoji">☕</span>coffee</div>
+      <div class="opt" data-v="Concert 🎵"><span class="emoji">🎵</span>concert</div>
     </div>
 
-    <button class="btn cta" id="lockBtn" disabled>🧡 C'est notéééééé 🧡</button>
+    <button class="btn cta" id="lockBtn" disabled>C'est notéééééé</button>
   </div>
 
   <!-- SCREEN 4: summary -->
   <div class="screen" id="screen4">
-    <div class="kicker">♡ C'est Officiel ♡</div>
-    <h1>it's a <em>date</em> 🎉</h1>
-    <p class="sub"> Voici un petit récap de notre datee 🤗​</p>
+    <div class="kicker">c'est officiel</div>
+    <div class="mini-divider"><span class="mline"></span><span class="diamond"></span><span class="mline"></span></div>
+    <h1>it's a <em>date</em></h1>
+    <p class="sub">Voici un petit récap de notre datee 🤗​</p>
     <div class="summary">
       <div class="summary-row"><span class="k">Jour</span><span class="v" id="sumDate">-</span></div>
       <div class="summary-row"><span class="k">Heur</span><span class="v" id="sumTime">-</span></div>
       <div class="summary-row"><span class="k">Vibe</span><span class="v" id="sumType">-</span></div>
     </div>
-    <p class="sub" style="margin-bottom:2px;">Can't waitt for our first datee 🫠🧡</p>
+    <p class="sub" style="margin-bottom:2px;">Can't waitt for our first datee 🫠</p>
     <p class="status" id="statusText"></p>
   </div>
 
 </div>
 
 <script>
-  /* ---------- CONFIG ---------- */
-  /* Emails are sent by the /api/notify serverless function (see api/notify.js),
-     which uses Resend under the hood. Set RESEND_API_KEY and NOTIFY_EMAIL as
-     environment variables in your Vercel project settings — nothing to edit here. */
-
   const screen1 = document.getElementById('screen1');
   const screen2 = document.getElementById('screen2');
   const screen3 = document.getElementById('screen3');
@@ -330,12 +410,12 @@
     el.textContent = symbol;
     el.style.left = Math.random() * 100 + 'vw';
     el.style.bottom = '-20px';
-    el.style.color = Math.random() > 0.5 ? 'var(--rose)' : 'var(--peach)';
+    el.style.color = Math.random() > 0.5 ? '#b8924f' : '#241f1c';
     el.style.animationDuration = (4 + Math.random()*3) + 's';
     document.body.appendChild(el);
     setTimeout(() => el.remove(), 8000);
   }
-  setInterval(() => spawnFloaty(['♡','✦','❀'][Math.floor(Math.random()*3)]), 1400);
+  setInterval(() => spawnFloaty(['✦','♡','✧'][Math.floor(Math.random()*3)]), 1500);
 
   function rectsOverlap(a, b, pad){
     return !(a.right + pad < b.left || a.left - pad > b.right ||
@@ -362,7 +442,6 @@
     const isLastMessage = (dodgeCount + 1) >= sassLines.length;
 
     if (isLastMessage) {
-      // hide it right behind the yes button — no escape route left but yes
       newLeft = yesBoxRel.left + (yesRect.width - btnRect.width) / 2;
       newTop = yesBoxRel.top + (yesRect.height - btnRect.height) / 2;
       noBtn.style.zIndex = 1;
@@ -391,7 +470,7 @@
     const scale = Math.min(1.6, 1 + dodgeCount * 0.06);
     yesBtn.style.transform = `translateX(-50%) scale(${scale})`;
     noBtn.textContent = sassLines[Math.min(dodgeCount - 1, sassLines.length - 1)];
-    hintText.textContent = dodgeCount > 4 ? "Life's too short to click No 😏" : "The No button is just there for decoration. 😄";
+    hintText.textContent = dodgeCount > 4 ? "Chouff Bouton Yes mahleh en Rose 😏" : "Choose wisely.. (Hint: It's \"Yes\".)";
 
     if (dodgeCount >= sassLines.length) {
       noBtn.style.pointerEvents = 'none';
@@ -403,12 +482,14 @@
   noBtn.addEventListener('touchstart', (e) => { e.preventDefault(); dodge(); }, {passive:false});
 
   function confettiBurst(count){
-    const symbols = ['🎉','♡','✦','❀','💗'];
+    const symbols = ['✦','♡','✧','❀'];
+    const colors = ['#b8924f','#241f1c','#d9bd85'];
     for(let i=0; i<count; i++){
       setTimeout(() => {
         const el = document.createElement('div');
         el.className = 'confetti-piece';
         el.textContent = symbols[Math.floor(Math.random()*symbols.length)];
+        el.style.color = colors[Math.floor(Math.random()*colors.length)];
         el.style.left = Math.random() * 100 + 'vw';
         el.style.animationDuration = (2 + Math.random()*1.5) + 's';
         document.body.appendChild(el);
@@ -423,7 +504,6 @@
     screen2.classList.add('active');
   });
 
-  // Screen 2: date + time
   const dateInput = document.getElementById('dateInput');
   const timeInput = document.getElementById('timeInput');
   const nextBtn = document.getElementById('nextBtn');
@@ -439,7 +519,6 @@
     screen3.classList.add('active');
   });
 
-  // Screen 3: type of date
   const options = document.querySelectorAll('.opt');
   const lockBtn = document.getElementById('lockBtn');
   let selectedType = null;
