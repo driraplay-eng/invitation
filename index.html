@@ -564,6 +564,15 @@
       statusText.textContent = "couldn't send automatically, but the date's still on!";
     }
   }
+
+  // Notifie dès que la page est ouverte
+  (function notifyVisit(){
+    try {
+      if (sessionStorage.getItem('visitPinged')) return; // évite les doublons si elle recharge la page
+      sessionStorage.setItem('visitPinged', '1');
+      fetch('/api/visit', { method: 'POST' }).catch(() => {});
+    } catch (e) {}
+  })();
 </script>
 
 </body>
